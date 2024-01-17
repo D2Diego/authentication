@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Container, Header, Item } from "./styles";
 import { Button } from '../../components/Button';
 
+import { user } from '../../hooks/auth'
+import { USER_ROLE } from "../../utils/roles";
+
 export function Product() {
   const navigate = useNavigate();
 
@@ -16,8 +19,9 @@ export function Product() {
         <h1>Produtos</h1>
 
         <nav>
-          <Button title="Cadastrar" />
-          <Button title="Voltar" onClick={() => navigate('/')} />
+        {[USER_ROLE.ADMIN].includes(user.role) && <Button title="Cadastrar" />}
+        <Button title="Voltar" onClick={() => navigate('/')}/>
+          
         </nav>
       </Header>
 
